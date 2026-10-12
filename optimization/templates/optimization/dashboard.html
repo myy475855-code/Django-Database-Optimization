@@ -1,0 +1,41 @@
+{% extends "optimization/base.html" %}
+{% block title %}Dashboard · DB Performance Lab{% endblock %}
+{% block content %}
+<section class="hero">
+  <span class="pill">DJANGO PERFORMANCE PROJECT</span>
+  <h1>Make every query count.</h1>
+  <p>A practical lab for reducing unnecessary SQL queries, choosing useful indexes, caching repeated reads, and measuring performance with Django Debug Toolbar.</p>
+  <a class="btn" href="{% url 'post_list' %}">Open optimized feed →</a>
+  <a class="btn secondary" href="{% url 'post_list_unoptimized' %}">Compare unoptimized feed</a>
+</section>
+<section class="grid">
+  <div class="card"><div class="muted">Published posts</div><div class="number">{{ stats.posts }}</div></div>
+  <div class="card"><div class="muted">Comments</div><div class="number">{{ stats.comments }}</div></div>
+  <div class="card"><div class="muted">Authors with posts</div><div class="number">{{ stats.authors }}</div></div>
+</section>
+<section class="grid">
+  <article class="card">
+    <h2>01 · Query optimization</h2>
+    <p class="muted">Use <code>select_related()</code> for foreign keys and <code>prefetch_related()</code> for reverse or many-to-many relationships.</p>
+  </article>
+  <article class="card">
+    <h2>02 · Indexing</h2>
+    <p class="muted">Indexes are defined for publication/date ordering and comment lookup by post and creation time.</p>
+  </article>
+  <article class="card">
+    <h2>03 · Caching</h2>
+    <p class="muted">The optimized feed is cached for five minutes. Saving or deleting a post/comment clears the cache.</p>
+  </article>
+  <article class="card">
+    <h2>04 · Measurement</h2>
+    <p class="muted">Use the Debug Toolbar SQL panel and the benchmark command. Compare measurements before making assumptions.</p>
+  </article>
+</section>
+<div class="card">
+  <h2>Try it locally</h2>
+  <pre>python manage.py seed_demo
+python manage.py benchmark_queries
+python manage.py runserver</pre>
+  <p class="muted">The Debug Toolbar is available in development mode. Never enable it on a public production site.</p>
+</div>
+{% endblock %}

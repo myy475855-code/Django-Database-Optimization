@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}DB Performance Lab{% endblock %}</title>
+  <style>
+    :root { color-scheme: light; --ink:#172033; --muted:#63708a; --line:#e1e7f0; --brand:#4456d9; --bg:#f5f7fb; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:var(--bg); color:var(--ink); }
+    header { background:#111a31; color:white; padding:18px 5vw; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+    header a { color:#e6eaff; text-decoration:none; margin-right:16px; }
+    .brand { font-weight:800; letter-spacing:.2px; }
+    main { width:min(1100px,92vw); margin:34px auto 70px; }
+    .hero { background:linear-gradient(120deg,#1d2b53,#4857d7); color:white; padding:34px; border-radius:22px; }
+    .hero h1 { font-size:clamp(28px,4vw,42px); margin:0 0 12px; }
+    .hero p { max-width:750px; color:#e5eaff; line-height:1.7; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin:22px 0; }
+    .card { background:white; border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:0 8px 24px #18274b08; }
+    .number { font-size:32px; font-weight:800; margin-top:8px; }
+    .muted { color:var(--muted); }
+    .pill { display:inline-block; padding:6px 10px; border-radius:999px; background:#eef0ff; color:#3947ba; font-size:12px; font-weight:700; }
+    .pill.warn { background:#fff2d9; color:#8b5a00; }
+    .btn { display:inline-block; background:var(--brand); color:white; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:700; margin:5px 7px 0 0; }
+    .btn.secondary { background:#edf0f8; color:#26324c; }
+    .post { border-bottom:1px solid var(--line); padding:17px 0; }
+    .post:last-child { border:0; }
+    h2 { margin-top:0; }
+    code { background:#f0f2f8; padding:2px 5px; border-radius:5px; overflow-wrap:anywhere; }
+    pre { background:#111a31; color:#e6eaff; padding:16px; border-radius:12px; overflow:auto; }
+    footer { text-align:center; color:var(--muted); padding:25px; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="brand">⚡ DB Performance Lab</div>
+  <nav>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'post_list' %}">Optimized Posts</a>
+    <a href="{% url 'post_list_unoptimized' %}">Unoptimized Demo</a>
+    <a href="/admin/">Admin</a>
+  </nav>
+</header>
+<main>{% block content %}{% endblock %}</main>
+<footer>Django Database Optimization &amp; Performance Tuning · Local learning project</footer>
+</body>
+</html>

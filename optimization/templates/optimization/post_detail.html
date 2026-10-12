@@ -1,0 +1,22 @@
+{% extends "optimization/base.html" %}
+{% block title %}{{ post.title }} · DB Performance Lab{% endblock %}
+{% block content %}
+<div class="card">
+  <a href="{% url 'post_list' %}">← Back to posts</a>
+  <h1>{{ post.title }}</h1>
+  <p class="muted">By {{ post.author.username }} · {{ post.created_at|date:"M j, Y H:i" }}</p>
+  <p style="line-height:1.8">{{ post.body }}</p>
+  <hr style="border:0;border-top:1px solid #e1e7f0;margin:26px 0">
+  <h2>Comments ({{ comments|length }})</h2>
+  {% for comment in comments %}
+    <article class="post">
+      <strong>{{ comment.author.username }}</strong>
+      <p>{{ comment.body }}</p>
+      <small class="muted">{{ comment.created_at|date:"M j, Y H:i" }}</small>
+    </article>
+  {% empty %}
+    <p class="muted">No comments yet.</p>
+  {% endfor %}
+  <p class="muted">This detail view uses <code>select_related("author")</code> and <code>prefetch_related("comments__author")</code>.</p>
+</div>
+{% endblock %}
